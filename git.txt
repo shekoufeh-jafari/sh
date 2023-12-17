@@ -1,0 +1,116 @@
+ git cheatsheet
+php cheatsheet
+vpn
+gitlab self hosted = نصب گیت روی سرور شخصی
+ctrl+o= save
+ctrl+x= exit
+git init = ایجاد پوشه .git
+*git status = دیدن وضعیت فایل ها
+
+git file lifecycle
+untracked = اضافه نشده به گیت
+unmodified = اضافه شده به گیت
+modified = تغییر یافته و اضافه نشده
+staged= اخرین ورژن فایل ثبت میشود
+
+git add "index.php" = ...اضافه کردن تغییرات فایل
+******git add . = اضافه کردن تغیرات همه فایلها
+******git commit -m "message" =staged
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+git log = نشان دادن فایل های ثبت شده 
+q
+
+git branch = دیدن نسخه های موجود 
+git branch loghman = ایجاد نسخه لقمان
+git checkout loghman = رفتن به نسخه لقمان
+git branch -d loghman = حذف نسخه لقمان
+git merge loghman = اضافه کردن نسخه به مستر
+ 
+clear =پاک شدن صفحه
+ 
+vim = a - esc - wq - enter
+
+انواع کامنت ها ی مورد استفاده:
+fix-confict
+change-lang-tofarsi
+merge branch name
+merge name into master
+change colore theme
+add loghman info file
+initial commit
+
+
+انواع شاخه ها:
+master اصلی
+develop اصلی
+feature
+release :شامل تعداد زیادی از فیچرها
+hotfixes :برای باگ های فوری
+
+git show id = نمایش محتویات درون کامیت ها 
+git diff master..loghman = نمایش تفاوت های دو شاخه
+
+git reset --hard id = رفتن به کامیت مشخص شده و حذف فایل های بعد از ان
+git reset id = بدون حذف فایل های بعد از ان
+git stash = ذخیره موقت بدون کامیت
+git stash list = نمایش 
+git stash show stash@{id} = نمایش محتویات استش مورد نظر
+git stash apply = رفتن به استش مورد نظر
+git stash pop = رفتن به استش مورد نظر و پاک کردن استش های بعد از ان
+git stash clear = حذف همه استش ها
+
+
+gitlab
+setting - general - advance - delete project
+
+cd ..  = برگشت یه پوشه عقب
+ls = نمایش پوشه ها
+cd file name = رفتن به پوشه
+
+وقتی فایل نداریم:
+git clone https://gitlab.com/shekwf/dart-agency-html.git  = پروژه را از گییت لب وارد پوشه کرد
+cd dart-agency-html = داخل پوشه با اسم ... رفت
+touch README.md = ساخت فایل
+git add README.md
+git commit -m "add README"
+******git push origin master = فرستادن تغییرات به گیت لب
+
+
+************موقع درست کردن پروژه جدید در گیت لب تیک رید می رو بردار
+خودش این پایینیا رو میاره
+
+ وقتی فایل .git را داریم
+git remote add origin https://gitlab.com/shekwf/dart-agency-html2.git
+git push --set-upstream origin --all
+git push --set-upstream origin --tags
+
+git pull origin master = وارد کردن اطلاعات از گیت لب
+
+ssh-keygen -t ed25519 -C "<comment>" = درست کردن کلید ssh
+cat /c/Users/j/.ssh/id-ed25519.pub  = نشان دادن محتویات فایل ایجاد شده
+ssh -T git @gitlab.com = چک کردن این که درست شده یا ن
+
+
+packagist = سایتی که پکیج ها و کتابخونه های پ چ پ را دارد
+validation /:
+composer
+depended manager or package manager = مدیریت وابستگی ها یا مدیریت پکیج ها
+
+ایجاد فایل:
+.gitignore
+پوشه هایی که به گیت لب فرستاده نشوند را دردرونش میگوییم:
+*.log   = فایل
+vendor/   = پوشه
+gitignore.io  = سایت که تمام چیز هایی که نباید بفرسی رو توش داره کپی کنی
+مثلا phpstorm رو سرچ کن
+
+git clone link = دانلود پروژه از گیت لب
+
+composer install  = دانلود خودکار پکیج ها با استفاده از composer.jason
+
+
+
+
+
+

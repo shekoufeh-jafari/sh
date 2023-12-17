@@ -1,0 +1,99 @@
+استفاده در کامندلاین
+mysql -h localhost -u root -p 
+SHOW databases;//نمایش
+CREATE DATABASE name;//ساختن 
+DROP DATABASE name;//حذف کردن
+USE name;// اجرا
+cls // پاک شدن 
+enter+altS; //تمام صفه
+show tables; // جداول دیتابیس
+describe users;//مشخصات جدول
+
+create table table_name(//ساختن جدول
+column1 datatype constraint,
+column2 datatype constraint
+);//ستون ها و نوع ان ها
+
+
+انواع قید (constraint):
+not null
+unique
+primary key
+foreignkey //references a unique record in another table
+check(age>=18)
+
+drop table table_name;//delete
+truncate table table_name;//empty
+ 
+select * from table_name; //show all rowes
+
+تغییر ساختار جدول :
+ALERT TABLE table_name ADD column_name datatype;//اضافه کردن ستون
+ALERT TABLE table_name DROP COLUMN column _name;//حذف ستون
+ALERT TABLE table_name MODIFY COLUMN column_name datatype;//تغییر نوع داده
+
+
+INSERT INTO table_name (column1,column2,...)
+VALUES (value1, value2,...);
+
+INSERT INTO table_name 
+VALUES (value1, value2,...);//به ترتیب و مجبوری به تعداد ستون ها مقدار داد
+
+
+DELETE FROM table_name WHERE Condition;
+age BETWEEN 10 AND 30
+age >50
+name LIKE "%trump%" //هرچیزی قبل یا بعد از ان
+IS [NOT]NULL 
+IN age(7,17,27)
+!=
+or/and
+
+
+UPDATE table_name SET column1=value1, column2=value2...
+WHERE condition;
+
+
+
+***
+SELECT columns FROM table_name where condition
+ORDER BY column1 order_type, column2 order_type,...;// ترتیب بندی بر اساس ستون خاص
+order type://به صورت پیش فرض صعودی
+ASC //صعودی
+DESC //نزولی
+
+SELECT * FROM users ORDER BY age ASC;//سن از کوچک به بزرگ
+SELECT * FROM posts ORDER BY publish_date DESC;//نمایش بزرگ ترین تاریخ
+SELECT * FROM products ORDER BY price ASC;//پایین ترین قیمت
+SELECT * FROM products ORDER BY price DESC , created_at DESC;//گرون ترین و جدید ترین
+
+SELECT fullname FROM users where age >40;
+SELECT * FROM users where fullname LIKE "ali%" and age<10;
+SELECT id,age FROM users;
+SELECT * FROM users where email LIKE "%@yahoo%";
+SELECT * FROM products where category = 'mobile' and price <1000;
+SELECT ip,access_date FROM access_log where users_id = 7437;
+
+--->> SELECT distinct city FROM addresses; //شهر های تکرای را نشان نمیدهد
+
+SELECT aggr(column) FROM table_name where...
+aggegate function:
+AVG-MIN-MAX-SUM: for values - COUNT:for rows
+
+as name
+select sum(order) as sum_order from table
+
+
+
+group by ,having: aggregate باید قبل ان استفاده شود ونمیتوان از where استفاده کرد
+مثلا وقتی میخواهیم بدانیم هر مشتری چه تعداد سفارش داده
+select customerID ,count(*) as order_count FROM orders group by customerID having order_count> 5 order by order_count desc
+ 
+***
+select * from table_name limit statr_point,page_size      //محدود کردن رکورد صفحات بازگشتی
+statr_point = (page-1)*page_size
+***
+select * from products JOIN suppliers ON prodects.supplierID=suppliers.supplierID -->INNER JOIN    //گرفتن و ادغام اطلاعات دو جدول   
+LEFT JOIN
+RIGHT JOIN
+FULL JOIN :LEFT JOIN UNION RIGHT JOIN

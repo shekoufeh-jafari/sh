@@ -1,0 +1,529 @@
+توابع رشته ها:
+<?php
+/* $str = "vah\nid sa\nlehi";
+ $str1= 7; 
+ $num=1000000;
+ echo is_string($str)."<br>";//1
+echo is_string($str1)."<br>";//هیچی
+echo strlen($str)."<br>";// اسپیس هم حسابه
+echo lcfirst($str)."<br>";// حرف اول را کوچک میکند
+echo ucfirst($str)."<br>"; //حرف اول را بزرگ میکند
+echo ucwords($str)."<br>";// حرف اول همه کلمات بزرگ
+echo strtoupper($str)."<br>";// همه حروف
+echo strtolower($str)."<br>";
+echo ltrim($str,"va")."<br>";//حساس به حروف کوچک و بزرگ. از سمت چپ حذف حروف
+echo rtrim($str,"ehi")."<br>";
+echo trim($str)."<br>";//delete white space
+echo trim($str,"vai")."<br>";//از راست و چپ حذف
+echo nl2br($str)."<br>";// \n
+echo number_format($num)."<br>";//تفکیک سه تایی عدد
+
+$str= "hello world. it's beautiful day.";
+print_r(explode(" ",$str));//عبارت قبل از اسپیس را به عنوان عضوی از ارایه میگیرد
+echo'<hr>';
+$arr = array("salam","khobi","shekofe","jan");
+echo implode(" ",$arr)."<hr>";//تبدیل ارایه به رشته
+echo substr("hello world",6)."<hr>";//شش تا میشمارد و حذف میکند
+echo strstr("hello world ziba","world")."<hr>";//کلمه را پیدا میکند و بعد از ان را چاپ میکند
+echo str_replace("world","vahid","hello world!")."<hr>";
+echo str_repeat("erfan ",4)."<hr>";
+echo str_shuffle("erfan ")."<hr>";//حروف را میکس میکند
+echo str_word_count("erfan dear heloo")."<hr>";//تعداد کلمات را میشمارد
+$token = strtok($str," ");//قطعه کردن رشته
+while ($token==true){
+    echo $token."<br>";
+    $token = strtok(" ");
+}
+echo "<hr>";
+$age= 12;
+$str ="tehran";
+printf("ali is %u years old and live in %s.",$age,$str);
+*/
+echo stripos("ali goh khord","goh")."<br>";//مکان کلمه را به صورت عدد برمیگرداند
+echo strpos("ali Goh khord","Goh")."<br>";//حساس به حروف کوچک و بزرگ
+echo md5("Erfan Salehi")."<br>";//تولید هش
+//echo "<script>alert('hacked')</script>";
+$str='<a href="https://www.7learn.com">seven</a>';
+echo $str."<br>";
+echo htmlentities($str)."<br>"; // برای امنیت در view source
+$str2="&lt;a href=&quot;https://www.7learn.com&quot;&gt;seven&lt;/a&gt;";
+echo html_entity_decode($str2)."<br>";
+echo htmlspecialchars($str)."<br>";
+echo htmlspecialchars_decode($str2)."<br>";
+echo strip_tags($str)."<br>"; // حذف تگ ها
+//string function in php
+
+
+===========================================================================================================
+توابع ارایه ها در php:
+//array function in php
+<?php
+/*function A($value){
+    echo '<pre>';//حالت کد
+    print_r($value);
+    echo '</pre><hr>';
+}
+$arr = array("ali","mary","erfan");
+$arr1=array("name"=>"ali","family"=>"ahmadi","age"=>20);
+echo count($arr)."<br>";//سایز ارایه
+echo sizeof($arr);
+A(array_keys($arr,"erfan"));//کلید های ارایه را برمیگرداند
+A(array_values($arr));//مقدار های ارایه را برمیگرداند
+
+if (array_key_exists("name",$arr1))//وجود کلید را چک میکند
+{
+    echo "exists<hr>";
+}else{
+    echo "does nt exist<hr>";
+}
+
+if (in_array("ahmadi",$arr1))//وجود مقدار را چک میکند
+{
+    echo "exists<hr>";
+}else{
+    echo "does not exist<hr>";
+}
+echo is_array($arr1);//چک میکند که ارایه هست یا نه. یا 1 چاپ میکند یا هیچ
+
+shuffle($arr1);
+A($arr1);
+
+sort($arr);
+for ($i=0;$i<sizeof($arr);$i++){
+    echo $arr[$i];
+    echo "<br>";
+}
+echo "<hr>";
+$num = array(22,99,78,56,34);
+echo max($num)."<br>";
+echo max(22,99,78,56,34)."<br>";
+echo min($num)."<br>";
+echo end($num)."<br>";//اخرین عضو ارایه
+echo array_sum($num)."<br>";
+echo array_rand($num)."<br>";//make random index
+echo "<hr>";
+
+
+function A($value)
+{
+    echo '<pre>';//حالت کد
+    print_r($value);
+    echo '</pre><hr>';
+}
+$arr = array("ali","mary","erfan","ali");
+$arr1=array("name"=>"ali","family"=>"ahmadi","age"=>20);
+A(array_chunk($arr,2));//هر دو عضو را به یک ارایه دیگر تبدیل میکند. ارایه چند بعدی
+A(array_merge($arr,$arr1));//ادغام دو ارایه
+A(array_unique($arr));//اعضای تکراری را حذف میکند
+A(array_reverse($arr));//اعضای ارایه را برعکس میکند
+echo array_search("ali",$arr1)."<hr>";//کلید مقدار انتخابی را برمیگرداند
+
+$arr2 = array("a"=>"ali","b"=>"bahram");
+$arr3 = array("e"=>"ali","c"=>"cosar", "f"=>"fary");
+A(array_diff($arr2,$arr3));//تفاوت ارایه 3 با 2
+A(array_slice($arr3,1));//نشان دادن قطعه ی بعد از ایندکس
+//array_splice($arr2,1,2,$arr3);
+//A($arr2);//جایگذاری
+//echo (array_shift($arr2));// مقدار اول را میدهد و از ارایه حذف میکند
+//A($arr2);
+
+array_push($arr2,"sara","mmd");//به ارایه عضو اضافه میکند
+A($arr2);
+echo array_pop($arr2)."<br>";//مقدار ایندکس اخر را حذف میکند
+A($arr2);
+$arr4= array_fill(0,4,"shekouf");//مقدار را از ایندکس 0 تکرار میکند
+A($arr4);
+*/
+
+function A($value)
+{
+    echo '<pre>';//حالت کد
+    print_r($value);
+    echo '</pre><hr>';
+}
+$arr = array("ali","mary","erfan","ali");
+$arr1=array("name"=>"ali","family"=>"ahmadi","age"=>20);
+$arr2 = array("a"=>"ali","b"=>"bahram");
+$arr3 = array("e"=>"ali","c"=>"cosar", "f"=>"fary");
+$num = [1,2,3,4,5,6,7,8,102,99,34];
+function odd(int $value){
+    return ($value & 1);//اگر عدد زوج باشد صفر میدهد
+}
+function even(int $value){
+    return(!($value & 1));
+}
+//echo odd(2);
+A(array_filter($num,"odd"));//اعداد فرد ارایه را به صورت برمیگرداند
+A(array_filter($num,"even"));
+
+$name = 'erfan';
+$gender = "male";
+$age = 20;
+$makeArray = compact('name','gender','age');//ایجاد ارایه از مقادیر
+A($makeArray);
+extract($arr3);//ارایه را به مقدار های جدا تبدیل میکند
+echo "\$e = $e \$cc = $c";
+
+===========================================================================================================
+کار با تاریخ و زمان
+http://jdf.scr.ir    سایت توابع شمسی
+
+<?php
+include 'jdf.php';
+include 'helper.php';
+//jdf فایل برای تاریخ شمسی
+echo date_default_timezone_get()."<br>";//منطقه زمانی فعلی
+date_default_timezone_set('asia/tehran');//مشخص کردن منطقه زمانی
+echo date('Y/M/d')."<br>";
+echo date('l')."<br>";
+echo date('h:i:s a')."<br>";//H:24 a:am pm
+//این زمان درست نیس و زمان سرور است
+echo $time= time();//timestamp
+echo "<br>";
+echo date("m-d-Y h:i:s a",$time)."<br>";
+echo $mk = mktime(22,30,12,6,3,2001);//gives timestamp
+echo "<br>";
+echo date("m-d-Y h:i:s a",$mk)."<br>";
+echo $str= strtotime('4:25pm july 20 2019')."<br>";//gives timestamp
+echo microtime()."<br>";//micro second
+echo "<hr>";
+var_dump(gregorian_to_jalali(2019,3,22));//تاریخ شمسی
+echo "<br>";
+echo gregorian_to_jalali(2019,3,22,'/')."<br>";
+echo "<hr>";
+echo jdate('y/m/d H:i:s')."<br>";
+$date= '2023-09-17 13:04:06';//تایم دیتا بیس
+echo dateToJalali($date)."<br>";//helper function
+echo jalali_to_gregorian(1380,10,3,'/');//my birthday
+
+
+
+
+helper.php
+<?php
+function dateToJalali(string $date){
+    $array = explode(' ',$date);
+    list($year,$month,$day)= explode('-',$array[0]);
+    list($hour,$minute,$second)= explode(':',$array[1]);
+    $timestamp = mktime($hour,$minute,$second,$month,$day,$year);
+    return jdate('Y-m-d H:i:s',$timestamp);
+}
+
+
+==================================================================================
+json: java script object notation
+ نسخه کم حجم برای انتقال اطلاعات در شبکه بین نرم افزار ها
+
+
+<?php
+/*
+// object
+{
+    "employee":{
+        "name" : "erfan",
+    "age" : 25
+}
+}
+ //array
+{
+    "employee":[
+    "name" : "erfan",
+    "age" : 25
+]
+}
+*/
+$employee=array("erfan"=>25,"sara"=>29);//associative
+echo json_encode($employee)."<hr>";//تبدیل پچپ به جیسون
+$color= ["blue","green"];//indexed
+echo json_encode($color)."<hr>";
+echo json_encode($color,JSON_FORCE_OBJECT)."<hr>";//show index
+
+$employeeJson='{"erfan":25,"sara":29}';
+print_r(json_decode($employeeJson));//تبدیل جیسون به پچپ
+echo "<hr>";
+print_r(json_decode($employeeJson,true));
+echo "<hr>";
+$emp= json_decode($employeeJson);
+echo $emp->erfan;
+echo "<hr>";
+foreach ($emp as $key=>$value){
+    echo $key ."=>".$value."<br>";
+}
+
+
+===========================================================================================
+انواع داده ها
+
+<?php
+$a= 10;
+echo gettype($a).'<br>';//نوع داده را میدهد
+$b=new stdClass;
+echo gettype($b).'<br>';//object
+$c= tmpfile();
+echo gettype($c).'<br>';//resource
+$d = '';
+$e = null;
+$f= array();
+if (empty($f))//true
+    echo "true";
+else
+    echo "false";
+echo "<br>";
+//اگر متغیر "" بود خالی است ولی ارسال میشود
+//اگر متغیر نال بود خالی است ولی چیزی ارسال نمیشود
+if (isset($f))//true
+    echo "true";
+else
+    echo "false";
+echo "<br>";
+echo "<hr>";
+echo is_array($f)."<br>";//1
+//اگ ارایه نبود هیچی چاپ نمیکند
+is_bool($f);
+is_null($a);
+is_integer($a);
+is_int($a);
+echo is_long($a)."<br>";//1
+is_string($a);
+echo is_iterable($f)."<br>";//باید قابل تکرار باشد مثل ارایه
+//is_readable;
+//is_resource;
+//is_object;
+//is_scalar;
+//is_real;
+//sample.com/single.php?id=1   کوِئری استرینگ
+$h= "ff";
+echo intval($h)."<br>";//مقدار عدد را برمیگرداند ولی رشته را صفر برمیگرداند. برای امنیت
+$data= serialize(array('cat','dog'));//تبدیل به بیت ها
+echo $data."<hr>";
+$data= unserialize($data);
+var_dump($data);
+
+
+
+
+$msg= null;
+$success= false;
+$error = false;
+if (isset($_POST['submit'])){
+    if (empty($_POST['name'])){
+        $error = true;
+        $msg= 'empty';
+    }else{
+        $success= true;
+        $msg ="submit";
+    }
+}
+فرم html
+نمایش در مکان دلخواه صفحه
+if ($success)
+    echo $msg;
+if ($error)
+    echo $msg;
+
+
+
+===============================================================================================
+
+
+<?php
+// توابعی برای تشخیص نوع داده
+$data= array('نhp','vahid%$salehi','123a',2);
+foreach ($data as $example) {
+    if (ctype_alnum($example)){//تابعی برای تشخیص حروف الفبا و اعداد
+        echo 'true'."<br>";
+    }else {
+        echo 'false'."<br>";;
+    }
+}
+/*
+ctype_alpha();//فقط شامل حروف و نه اعداد
+ctype_cntrl();// "\n \r \t"   کاراکتر های کنترلی
+ctype_digit();//برای تشخیص عدد اینتیجر به صورت رشته
+ctype_graph();//رشته ای که قابل چاب باشد و بینش اسپیس نباشد و کاراکتر های کنترلی هم قابل دیدن نیستند
+ctype_print();//مثل قبلی بدون حساسیت به اسپیس
+ctype_lower();// باید رشته شامل حروف کوچک باشد
+ctype_punct();//باید رشته ای باشه که فصله نداشته باشه قابل چاپ باشه و خروف و عدد نباشه !@
+ctype_space();//کاراکتر های کنترلی که فاصله ایجاد میکند
+ctype_upper();//همه حروف باید بزرگ باشد
+ctype_xdigit();//هگزادسیمال 16
+
+
+
+
+*/
+
+
+============================================================================
+تولید رشته تصادفی
+
+echo rand()."<br>";//اینتجر میلیارد
+echo rand(1,10)."<br>";//عدد تصادفی در بازه
+echo mt_rand()."<br>";//سرعت بیشتر در توللید عدد تصادفی
+echo random_int(1,100)."<br>";
+echo $rand = random_bytes(3)."<br>";//تولید رشته رمز گذاری شده
+echo bin2hex($rand);//تبدیل به رشته بدون رمز
+echo "<hr>";
+
+function randSting($length) :string {//تابع برای ایجاد رشته تصادفی
+    $chars = '0123456789qwertyuiop[]\+_)(*&^%$#@!;lkjhgfdsazxcvbnm,./';
+    $random='';
+    for ($i=0; $i<$length; $i++){
+        $random .=$chars[rand(0,strlen($chars)-1)];
+    }
+    return $random;
+}
+
+echo randSting(10);
+
+=================================================================
+//math function in php
+echo round(2.4)."<br>";//2.5 و بالا تر را به بالا گرد میکند
+echo ceil(2.4)."<br>";//همواره به بالا گرد میکند
+echo floor(2.4)."<br>";//همواره رو به پایین گرد میکند
+echo "<hr>";
+echo sqrt(64)."<br>";//جذر عدد
+echo abs(-4)."<br>";//عدد منفی را مثبت میکند
+echo min(-3,4,7,8)."<br>";
+echo max(64,6,7)."<br>";
+echo pi()."<br>";//عدد پی
+echo is_finite(64)."<br>";//عدد بی نهایت نیس
+echo is_infinite(log(0))."<br>";//بی نهایت است
+====================================================================
+
+
+فایل ها در php
+
+
+<?php
+echo file_exists('helper.php').'<hr>';//بررسی وجود فایل
+echo is_file('helper.php').'<hr>';
+echo is_dir('../git').'<hr>';//بررسی وجود پوشه
+$dirPath="new-dir";
+if (!file_exists($dirPath)){
+    mkdir($dirPath);//ایجاد پوشه
+}else echo "dir $dirPath already exist".'<hr>';
+@unlink("index.php");//حذف فایل
+//@ برای نشان ندادن هشدار warning
+
+$dirPath1="new-dir/logs.txt";
+/*$fileOpen=fopen($dirPath1,"a+");//ایجاد یا باز کردن فایل
+//r=read  w=write  w+=read & write   a+=addition info
+for ($i=1; $i<=5 ;$i++){
+    fwrite($fileOpen,"log $i =>".date("y-m-d h:i:s",time()).PHP_EOL);//نوشتن در فایل ایجاد شده
+    //PHP_EOL برای ایجاد br
+}
+fclose($fileOpen);//بستن فایل ایجاد شده
+*/
+
+
+/* $dirPath1="new-dir/logs.txt";
+$fileOpen=fopen($dirPath1,"r");//ایجاد یا باز کردن فایل
+//r=read  w=write  w+=read & write   a+=addition info
+for ($i=1; $i<=3 ;$i++){
+    //echo $read1= fgetc($fileOpen);//3 کاراکتر اول را میخواند
+    echo $read2= fgets($fileOpen)."<br>";//3 خط اول را میخواند
+}
+fclose($fileOpen);//بستن فایل ایجاد شده
+echo "<hr>";
+
+
+$str='this is new test'.PHP_EOL;
+file_put_contents($dirPath1,$str,FILE_APPEND);//محتوا داخل فایل قرار میدهد
+//پارامتر سوم را اگر نگذاریم محتویات فایل را پاک و جایگزین میکند
+$str2= file_get_contents($dirPath1);//محتویات فایل را میخواند
+echo nl2br($str2);//برای ایجاد نیو لاین
+*/
+echo filesize($dirPath1)."<hr>";//سایز بر حسب بایت
+echo filetype($dirPath1)."<hr>";//تشخیص فایل یا پوشه
+chown($dirPath1,'root');//مشخص کردن سطح دسترسی تک نفره
+chgrp($dirPath1, 'root');//گروهی
+
+$list= glob('*.php');//پیدا کردن 
+var_dump($list);
+
+======================================================================================================
+
+اپلود فایل
+
+<?php
+//split right : show two pages
+session_start();//در همه صفحات باید صدا زده شود
+$msg =null;
+//when we have many files we dont use $_POST we use $_FILE
+if ($_SERVER["REQUEST_METHOD"]=="POST"){
+    if (isset($_POST['upload']) && $_POST['upload']=='uploadV'){//value name for security
+        if (isset($_FILES['file'])&& !empty($_FILES['file'])){
+                //var_dump($_FILES['file']);
+                $fName=$_FILES['file']['name'];
+                $fSize=$_FILES['file']['size'];
+                $fType=$_FILES['file']['type'];
+                $fTmpath=$_FILES['file']['tmp_name'];
+                $fNameSeprate=explode('.',$fName);//جدا کردن برحسب پسوند
+                $fNameExtention= strtolower(end($fNameSeprate));//تبدیل به حروف کوچک
+                $newFname = md5(time().$fName).'.'.$fNameExtention;//برای جلوگیری از اورراید شدم فایلی دیگر با نام مشابه اسم را همراه با زمانش هش میکنیم
+                $allowedExtention= ['mp4','jpg','gif','doc','rar'];//فایل های مجاز برای اپلود
+            if (in_array($fNameExtention,$allowedExtention)){//چک کردن پسوند درون ارایه
+                $maxSize= 5* 1024*1024;//تبدیل 5 مگ به بایت
+                if ($fSize< $maxSize) {
+                    $uploadDir = 'upload/';//پوشه ی ذخیره کننده فایل ها
+                    $destpath = $uploadDir . $newFname;//مکان و اسم فایل
+               ****     if (move_uploaded_file($fTmpath, $destpath)) {
+                        $msg = 'فایل اپلود شد';
+                    } else{
+                        $msg = 'خطا در اپلود';
+                    }
+                } else{
+                    $msg= 'حجم فایل زیاد است';
+                }
+                }else{
+                $msg= 'فایل مورد نظر مجاز نیست';
+            }
+        }else {
+             $msg='not ok';
+        }
+    }
+}
+$_SESSION['msg']=$msg;
+header("location:a.php");
+//xapp->php->php.ini->c+f->post_max_size=210M & upload_max_size=200M
+//برای افزایش حجم فایل های مورد قبول برای اپلود
+؟>
+
+
+
+<body>
+<?php if (isset($_SESSION['msg']) && $_SESSION==true)://دارای مقدار باشد?>
+<h1><?php echo $_SESSION['msg']; ?></h1>
+<?php unset($_SESSION['msg']); ?>
+<?php endif; ?>
+<form method="post" action="upload.php" enctype="multipart/form-data"><!-- necessary for sending file -->
+    <input type="file" name="file">
+    <input type="submit" name="upload" value="uploadV">
+</form>
+</body>
+
+
+===============================================================
+xampp->sendmail->sendmail.ini->smtp_server=smtp.gmail.com  !mail.mydomain.com, smtp_port=465 !25 
+auth_username=ایمیل
+auth_password=پسوورد
+force_sender= shekouseh.jafari.work@gmail.com   اینو اگ نزاشتی باید دستی تو کد وارد کنی
+
+
+php init->mail function->
+;SMTP=localhost
+;smtp_port=25
+با سمیکالن غیر فعال میکنیم
+;sendmail_from = me@example.com  ->ایمیل
+sendmail_path = C:\xampp\sendmail\sendmail.exe
+
+
+
+$name= $_POST['name'];
+$email= $_POST['email'];
+$subject= $_POST['subject'];
+$message= $_POST['message'];
+****mail($email,$subject,$message,'From: shekoufeh.jafari.work@gmail.com');
+header('Location: a.php');
+exit();

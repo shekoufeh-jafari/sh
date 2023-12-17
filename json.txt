@@ -1,0 +1,52 @@
+ip-api    مکان ما را به صورت جیسون میدهد
+اما در زبان مثلا پایتون نمیشود استفاده کرد چون فضای خالی زیادی دارد
+راه حل پیس کردن در
+url
+وکپی کردن مجدد یا استفاده از نوت پد پلاس و 
+replace 
+کردن
+\r\n
+
+
+chrome json formatter 
+اکستنشن کروم برای نمایش بهتر جیسون
+
+خطا یابی جیسون
+json syntax checker
+json formatter & validator
+
+
+نمایش درختی جیسون 
+json online tree viewer
+
+
+تبدیل 
+json to xml
+xml to json
+
+
+$b=array(...);
+$json=json_encode($b);//تبدیل ارایه php به ارایه ای از object های جاوا اسکریپتی
+echo $json;
+echo'<br><br>';
+$jsontophp=json_decode($json,1);//تبدیل ارایه json به ارایه php انجمنی
+print_r($jsontophp);
+echo'<br><br>';
+$jsontophp=json_decode($json);//تبدیل ارایه json به ارایه object php.دارای stdclass
+print_r($jsontophp);
+echo'<br><br>';
+echo($jsontophp->{12}->name);//نحوه دسترسی به مقدار های ارایه ابجکتی
+echo '<hr>';
+$bToObject=(object) $b;//تبدیل مستقیم ارایه انجمنی به ابجکتی که البته روی ارایه های چند بعدی کار نمیدهد
+print_r($bToObject);
+echo'<br><br>';
+$objectToarray=(array)$bToObject;//تبدیل مستقیم ارایه ابجکتی به انجمنی
+print_r($objectToarray);
+echo '<hr>';
+$car=new stdClass;//ساختن مستقیم ابجکت
+$car->name='pride';
+
+
+$configStr= file_get_contents (name.json);//خواندن داده های فایل
+echo $configStr;
+file_put_contents('newName.json',$phpToJson);//ایجاد فایل جدید
