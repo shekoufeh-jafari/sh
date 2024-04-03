@@ -1,0 +1,44 @@
+__DIR__  current directory
+filter_var($email,FILTER_VALIDATE_EMAIL)// اعتبار سنجی ایمیل
+
+اعتبار سنجی شماره موبایل regex in php
+
+php mailer : پکیج ارسال ایمیل
+mailtrap :برای استفاده از پکیج
+
+کاوه نگار برای عملیات ارسال پیام
+
+alt : برای تغییر چند کلمه همزمان
+
+دانلود نمونه کد: verifyLookup.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

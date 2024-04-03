@@ -1,0 +1,345 @@
+از کلاس های ابسترک نمیتوان شی ساخت برای استفاده باید بچه ساخت
+کلاس فرزند باید همه متد های ابسترک پدر را تعریف کند
+انتر فیس همه متد هایش ابسترک است
+
+abstract method dont have implementation
+abstract class{
+}
+
+
+interface name1{
+}
+
+class name2 implements name1,...{
+}
+
+در صورت استفاده از استاتیک نیازی به ساخت شی نیست
+::
+
+str_repeat('a',12);//تکرار حرف
+
+self not this: برای دسترسی به پروپرتی های استاتیک در متد های کلاس 
+
+
+public stattic $count;
+public function __construct()
+{
+self::$count++;//تعداد شی های ساخته شده را میدهد
+}
+
+
+
+final class: جلوگیری از بچه داشتن
+ public final function name{
+} //جلوگیری از اورراید
+
+late static binding:
+self::class  //همیشه اسم کلاس پدر را میده
+static::class // اسم کلاس شی ایجاد شده را میدهد
+
+$p2= clone p1; is different from $p2=p1;
+
+dynamic call method:
+function_exists();//چک کردن وجود تابع
+class_exists();
+method_exists();
+
+
+
+name space:solve name conflict problem
+
+1)
+namespace App\models;
+$model= new App\models\User();
+
+2)
+use App\models\User as UserModel;
+$obj= new UserModel();
+
+__NAMESPACE__ : ثابت جادویی که اسمش را میدهد
+
+
+
+
+
+=================================================================================================================================================
+
+<?php
+class person {
+    //protected: فقط در بچه ها قابل دسترس است
+    public $name = "loghman\n";//همه جا قابل دسترس
+    public string $brand;
+    private $age=90;//فقط داخل کلاس قابل دسترس
+    public function setname(){
+        echo "name: ".$this->name;//اشاره به ابجکت در حال اجرای متد
+}
+public function setage(){
+        echo "age: " . $this->age;
+}
+    public function __construct($brand){//با ساختن شی اجرا میشود
+      //برای مقدار دهی اولیه استفاده میشود
+       echo $this->brand=$brand;
+        echo "\nobject created\n";
+    }
+    public function __destruct(){//با ساختن شی اجرا میشود
+     //برای نابود کردن ابجکت استفاده میشود
+        //نمیتواند ورودی بگیرد
+       echo "\n".$this->brand;
+        echo "\nobject destroyed\n";
+    }
+
+}
+
+$ali = new person("benz");
+echo $ali->name ;
+$ali->name="ali\n";
+$ali->setname();
+$ali->setage();
+
+class programmer extends person {//ارث بری
+
+}
+$pro= new programmer("samand");
+var_dump($pro instanceof person);//چک کردن این که یک شی از یک کلاس هست با مقدار بولین.
+
+/*
+class person2{
+    private $nationalCode="555";
+    public function setNationalCode($nationalCode){
+        $this->nationalCode=$nationalCode;
+    }
+    public function getNationalCode(){
+        return $this->nationalCode;
+    }
+}
+$sheko=new person2();
+echo $sheko->getNationalCode();//مقدار اولیه
+$sheko->setNationalCode("\n1234");
+echo $sheko->getNationalCode();
+
+*/
+
+=================================================================================================================================================
+
+<?php
+//utility are some classes to use in project in static way
+class url{
+    public static function getCurrent(){
+        $url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        return $url;
+    }
+    public static function segments($url=null){
+        if ($url==null){
+            $url= self::getCurrent();
+        }
+        $segments=explode("/",$url);
+        return $segments;
+    }
+
+
+}
+$url=new url();
+echo $url->getCurrent();
+echo "<br>";
+var_dump($url->segments());
+
+=================================================================================================================================================
+
+
+function my_autoloader($class){
+
+    $classFile = __DIR__ . "/$class.php";
+    if(file_exists($classFile) && is_readable($classFile)){//هنگام شی ساختن از کلاس ابتدا ب اینجا ارسال میشود و چون اسم کلاس با فایل ات یکی است
+        include $classFile;
+    }else{
+        die("$classFile not found!\n");
+    }
+    // echo "from my_autoloader => $class used!!! \n";
+}
+spl_autoload_register('my_autoloader');//تابعی که قرار است اتولود را انجام دهد به ان میدهیم
+
+//اسم کلاس و فایل و نیم ایپیس باید یکی باشد
+
+=================================================================================================================================================
+traits: نمیتوان از انها ابجکت ساخت. از انها در کلاس ها استفاده میشود 
+
+traits hasName{
+}
+
+1)include "traits.php"
+2)in class: use hasName,...;
+
+get_object_vars($this);//تبدیل ارایه به ابجکت
+json_encode($this);//جیسون میده
+
+------------------------------------------------------------------------------------------------------------------------
+
+trait Singleton//زمانی که بخواهیم فقط یک شی ساخته شود
+{
+    private static $instance;
+
+    public static function getInstance()
+    {
+        if (!(self::$instance instanceof self)) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
+}
+$obj = Mobile::getInstance(); //شی ساخته شده از کلاس مبایل
+
+
+
+=================================================================================================================================================
+<?php
+//magic methode
+class A{
+
+    public function __toString(){//محتوای ابجکت را به رشته تبدیل میکند
+        return "an object of " . self::class;
+    }
+    public function __invoke($arr){//زمانی که ابجکت را به صورت تابع استفاده کنیم اجرا میشه
+        var_dump($arr);
+        echo "__invoke called!";
+    }
+    public function __clone(){//run when clone is used
+        echo "an object was cloned!"; 
+    }
+
+    public function __debugInfo() {//run when object is var_dump
+        return [
+            'className' => self::class,
+            'line' => __LINE__
+        ];
+    }
+
+    
+}
+$c = "ccc";
+$a = new A();
+// echo $a . $c;
+// $a([1,2,3]);
+var_dump($a);
+$b = clone $a;
+
+=================================================================================================================================================
+//magic methode
+
+<?php
+class Math{
+    public function sum($numbers){
+        $sum = 0;
+        foreach($numbers as $num){
+            $sum += (int)$num;
+        }
+        return $sum;
+    }
+    public static function mul($numbers){
+        $mul = 1;
+        foreach($numbers as $num){
+            $mul *= (int)$num;
+        }
+        return $mul;
+    }
+}
+
+class GetSet
+{
+    private $id = 50;
+    private $data;
+
+    public function __get($prop)
+    {//زمانی که مقدار یک پراپرتی غیر قابل دسترس گرفته شود صدا زده میشه
+        // echo "property [$prop] is not accessible!\n";
+        if (isset($this->data[$prop])) {
+            return $this->data[$prop];
+        } else {
+            echo "property $prop not defined!";
+        }
+    }
+    public function __set($prop, $value)
+    {//زمانی که برای یک پراپرتی غیرقابل دسترس مقدار ست شود
+        // echo "in __set() : $prop => $value \n";
+        $this->data[$prop] = $value;
+    }
+
+    public function __call($name, $arguments)
+    {//زمانی که یک تابع غیر قابل دسترس صدا زده میشود
+        $math = new Math();
+        if(method_exists($math,$name)){//method in object or class
+            return $math->{$name}($arguments);
+        }else{
+            echo "method [Math->$name] not exists.";
+        }
+        // echo "in __call: $name(" . implode(",", $arguments) . ")";//تبدیل ارایه به رشته
+    }
+    public static function __callStatic($name, $arguments){//زمانی که یک تابع غیر قابل دسترس استاتیک صدا زده میشود
+        return Math::{$name}($arguments);
+    }
+}
+
+$gs = new GetSet();
+// $gs->name = "Loghman";
+// $gs->family = "Avand";
+// $gs->age = 32;
+// echo $gs->age;
+// echo $gs->id;
+// print_r($gs->data);
+// var_dump($gs);
+
+echo $gs->sum(1,4,7) . PHP_EOL;
+echo $gs::mul(1,4,7);
+
+=================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

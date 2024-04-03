@@ -1,3 +1,5 @@
+برای طراحی جدول دیتا بیس هر طرف که ان داشت کلید خارجی میگیرد
+
 code runner اکستنشن برای اجرای کد
 
 
@@ -30,7 +32,7 @@ object(mysqli)#1 (18) {
   string(20) "localhost via TCP/IP"
   ["info"]=>
   NULL
-  ["insert_id"]=>
+  ["insert_id"]=>      ایدی
   int(0)
   ["server_info"]=>
   string(15) "10.4.27-MariaDB"
@@ -45,3 +47,275 @@ object(mysqli)#1 (18) {
   ["warning_count"]=>
   int(0)
 }
+
+=======================================mysqli
+<?php
+
+# MySQLi Connect
+$mysqli = new mysqli("localhost","root","","raya");//شی ساختن از کلاس
+echo "<pre>";
+//var_dump($mysqli);//مشاهده توابع درون کلاس
+
+# Check The Connection
+if ($mysqli->connect_errno) {//با اتصال موفق مقدارش صفر است
+    echo "Failed to connect to MySQL: " . $mysqli->connect_error;//چاپ ارور
+    exit();
+}
+
+# connection is ok here !
+echo "Successfully connected to Database !" . PHP_EOL;//رفتن به خط جدید
+
+# Set Charset
+$mysqli->set_charset("utf8");//برای وارد کردن اطلاعات فارسی به دیتا بیس
+# print_r($mysqli); //دیدن ارایه
+
+
+/*
+# Create Tables
+$sql = "
+CREATE TABLE *table*(
+	id int PRIMARY KEY AUTO_INCREMENT,
+	fullname varchar(128) ,
+	age tinyint UNSIGNED,
+	sex ENUM('f','m'),	
+	isSingle boolean DEFAULT 1
+);
+";
+
+// $sql = "DROP TABLE people";//خالی کردن جدول
+
+for ($i=1;$i<=3;$i++){ //ایجاد تعداد زیاد جدول
+    $table_sql = str_replace("*table*","people$i",$sql);
+if($mysqli->query($table_sql)){
+    echo "Table created successfully";
+}else{
+    echo "Table is not created !!!";
+}
+}
+
+for ($i=1;$i<=3;$i++){
+    $mysqli->query("drop table people$i");
+}
+
+*/
+
+
+$sex_array=['m','f'];
+//$users = array(//اطلاعات ارسالی با متد ها
+//'fullname'=>"loghman".rand(100,999),
+//    'age'=> rand(10,100),
+//    'sex'=>$sex_array[rand(0,1)],
+//    'isSingle'=> rand(0,1)
+//);
+
+
+# INSERT An INSERT with prepare.
+
+//$sql = "INSERT INTO people2 (fullname,age,sex,isSingle) VALUES ('{$user['fullname']}',{$user['age']},'{$user['sex']}','{$user['isSingle']}')"; //unsafe query
+//echo $sql;//check query
+
+/*
+$sql = "INSERT INTO people1 (fullname,age,sex,isSingle) VALUES (?,?,?,?)"; //safe query
+# when data come from user inputes
+$stmt = $mysqli->prepare($sql);
+# var_dump($stmt);//a array like mysqli
+$stmt->bind_param('sisi',$user['fullname'],$user['age'],$user['sex'],$user['isSingle']);//data type - solve security errors
+$stmt->execute();//اجرا کردن کوئری
+$stmt->close();// بستنش برای ذخیره منابع
+
+*/
+
+function addUser($user){//تابع برای اضافه کردن
+    global $mysqli;
+
+    $sql = "INSERT INTO people2 (fullname,age,sex,isSingle) VALUES (?,?,?,?)";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param('sisi',$user['fullname'],$user['age'],$user['sex'],$user['isSingle']);
+    $stmt->execute();
+    return $stmt->insert_id;
+}
+
+//for ($i=0;$i<=10;$i++){
+//    $users = array(//اطلاعات ارسالی با متد ها
+//        'fullname'=>"loghman".rand(100,999),
+//        'age'=> rand(10,100),
+//        'sex'=>$sex_array[rand(0,1)],
+//        'isSingle'=> rand(0,1)
+//    );
+//    echo $id=addUser($users)."<br>";
+//}
+
+
+/*
+#delete
+# user data
+ $user_id = 6;
+ $sql = "delete from people where id = ? ";
+ $stmt = $mysqli->prepare($sql);
+ $stmt->bind_param("i", $user_id);
+ $stmt->execute();
+ print_r($stmt);
+
+
+$sql = "delete from people where id < 7";
+if ($mysqli->query($sql)) {
+    echo "$mysqli->affected_rows Records successfully Deleted!" . PHP_EOL;//تعداد سطر های حذف شده
+} else {
+    echo "Failed to Delete" . PHP_EOL;
+}
+
+#update
+$ageIncVal = 100;//عددی ک میخواهیم به سن اضافه شود
+$sql = "update people set age = age + ? where id < 10";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param('i', $ageIncVal);
+$stmt->execute();
+//print_r($stmt);
+*/
+
+//============ php -S localhost:7777     در ترمینال سرور بالا بیاریم البته باید ایندکس درست کرده باشیم
+
+/*
+$sql="select fullname,age,id from people2 where id > 7";
+$result= $mysqli->query($sql);//تابع
+echo "<table>";
+while ($row = $result->fetch_object()) {// نمایش به صورت ارایه تک بعدی با استفاده از حلقه
+    echo "<tr>";
+    foreach ($row as $key => $value) {
+        echo "<td>$value</td>";
+    }
+    echo "<tr>";
+}
+echo "</table>";
+*/
+//print_r($result->fetch_assoc());
+//$result->fetch_all(): نمایش همه رکورد ها دردن ارایه دو بعدی
+//$result->fetch_assoc() : فقط نمایش یک رکورد
+//$result->fetch_object() : نمایش به صورت ابجکت
+
+
+/*
+$sql = "select avg(age) as age_average,count(*) as population from people2";//میانگین سن و تعداد نفرات
+$stmt = $mysqli->prepare($sql);
+$stmt->execute();
+$stmt->bind_result($age_average, $population);//ریختن مقادیر درون متغیر که حتما باید همنام باشند
+$stmt->fetch();
+echo "<br>Age Average is $age_average";
+echo "<br>population is $population";
+*/
+
+$sql = "select * from people2";
+$stmt = $mysqli->prepare($sql);
+$stmt->execute();
+$stmt->store_result();//برای شمارش و مسخره بازی
+echo $stmt->affected_rows;
+
+===============================================================================================================pdo
+
+
+//connection
+list($host,$database,$user,$pass)=["localhost","raya","root",""];//انتساب مقادیر متغیر ها به صورت همزمان
+//pdo به همه دیتابیس ها متصل میشود
+//var_dump($db);
+
+try { //برای گرفتن خطا
+    //code //وقتی خطا نداشتیم
+}catch (\throwable $th) {
+    //throw $th //وقتی خطا داشتیم
+}
+try {
+    $db= new PDO("mysql:host=$host;dbname=$database;charset=utf8mb4",$user,$pass);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//همه ارور ها را از این نوع میکند
+    echo "connect successful".PHP_EOL;
+}catch (PDOException $e){//خطای حین اجرا
+    echoline("PDO error:". $e->getMessage() ."on line" . $e->getLine());
+    exit();
+}
+//echoline($db->getAttribute(PDO::ATTR_CONNECTION_STATUS));
+
+
+/*
+//insert
+//$sql = "INSERT INTO people2 (fullname,age) values (?,?)";//ترتیب مهم است
+//$stmt= $db->prepare($sql);
+//$stmt->execute(["hasan",12]);
+
+
+//$sql = "INSERT INTO people2 (fullname,age) values (:fullname,:age)";//ترتیب مهم نیس
+//$stmt= $db->prepare($sql);
+//$stmt->execute(["fullname"=>"ali","age"=>5]);
+//echoline("insert id =" . $db->lastInsertId());//show user id
+
+
+$sql = "INSERT INTO people2 (fullname,age,sex) values (?,?,?)";
+$stmt= $db->prepare($sql);
+$users= [
+    ["sara", 33,"f"],
+    ["changiz",44,"m"]
+];
+
+$db->beginTransaction();//اگر وسط اجرا ارور داشت کل عملیات های قبلی منسوخ میشود
+foreach ($users as $value){
+    $stmt->execute($value);
+    if ($user[0]="changiz")
+        exit();
+}
+$db->commit();
+
+*/
+
+
+/*
+//update
+$sql = "update people2 set isSingle = 0";
+$stmt= $db->prepare($sql);
+$stmt->execute();
+
+$sql = "update people2 set isSingle = 0 where id< ?";
+$stmt= $db->prepare($sql);
+$stmt->execute([20]);
+echoline($stmt->rowCount());//تعداد رکورد های تغیر کرده
+
+
+$sql = "update people2 set isSingle = :isSingle where id< :id";
+$stmt= $db->prepare($sql);
+$stmt->execute(['id'=>30,"isSingle"=>1]);
+echoline($stmt->rowCount());
+
+*/
+
+/*
+//delete
+$sql = "delete from people2 where id > 25";
+$stmt= $db->prepare($sql);
+$stmt->execute();
+echoline($stmt->rowCount());
+
+*/
+
+//select
+function echoPeople($row){
+    echo implode(" - ",$row). PHP_EOL;//میتوان از یک حلقه هم استفاده کرد
+}
+function echoPeoples($rows){
+    foreach ($rows as $row){
+        echoPeople($row);
+    }
+}
+
+
+$sql = "select * from people2 where age<20";
+$stmt= $db->prepare($sql);
+$stmt->execute();
+//$result= $stmt->fetchAll(PDO::FETCH_ASSOC);//حذف تکرای ها و به صورت ارایه دو بعدی است
+//var_dump($result);ارایه دو بعدی
+//echoPeoples($result); //تبدیل ارایه دو بعدی با استفاده از تابع
+
+
+while($result=$stmt->fetch(PDO::FETCH_OBJ)){ //استفاده از حلقه برای ارایه تک بعدی . 5 تا ارایه برمیگرداند
+    echoline($result->fullname);
+    //var_dump($result);
+}
+
+
+

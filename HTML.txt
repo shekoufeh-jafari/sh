@@ -1,0 +1,171 @@
+//CTRL+U > نمایش همه کد ها ,emmet extention
+<link rel="stylesheet" href="styled.css">
+
+selector refrence{//نحوه استایل دهی
+            prop1: val1;
+            prop2: val2;
+        }
+
+       #e1 div.bye{   id-tag-class
+            background-color: #0F4FE6;
+        }
+
+
+performance analiser  -> chrom extention
+
+animate.css  
+fontawesome
+bg pattern geneitor
+js events
+bootstrap is a framework for html & css
+plugin for js
+جیسون یک ابجکت جاوا اسکریپتی است که برای ایجکس استفاده میشود
+cdn for jquery, javascript, css, bootstrap, plugin 
+slick slider, fancybox
+
+jquery ajax 
+ایجکس یعنی بدون رفرش کردن کل صفحه اطلاعتن قسمتی از صفحه رفرش شود
+
+لورم ایپسوم -> ایجاد جمله تصادفی
+xhr->network->Spectator:ajax request
+
+------------------------------------------------------------------------------------------
+ارسال متن سمت سرور و ذخیره ان در یک فایل
+html:
+
+ <script>
+        $(document).ready(function(){
+            var btn = $('#ajax-send');
+            var input = $('#ajax-input');
+            var resultTag = $('#ajax-result');
+            btn.click(function(){
+                $.ajax({//تابع ارسال درخواست ایجکس
+                    url : 'ajax-handler.php',//به کجا ارسال بشه
+                    method: 'post',
+                    data: {data: input.val()},//داده ی ارسالی
+                    success: function(response){//جواب درخواست ارسال شده
+                        resultTag.html(response);
+                    }
+                });
+            });
+        });
+    </script>
+
+------------------------
+php:
+
+define('FILE_NAME','data.txt');
+
+$data = $_POST['data'];
+
+if(strlen($data) < 10){
+    echo "امکان ذخیره فایل فقط برای متن های بالای 10 حرف وجود داره";
+    die();
+}
+
+file_put_contents(FILE_NAME,$data . PHP_EOL ,FILE_APPEND);//ایجاد فایل در صورت وجود نداشتن. قسمت سوم برای اضافه کردن فایل لازم است
+
+$fileContents = file_get_contents(FILE_NAME);//خواندن محتوای فایل
+
+echo nl2br($fileContents);
+==================================================================================================================================
+
+نمایش جمله تصادفی هر 3 ثانیه
+html:
+
+<script>
+    setInterval(function () {//هر 3 ثانیه تابع را اجرا میکند
+        $.ajax({
+            url: 'ajax-handler.php',
+            success: function (response) {
+                $("div#rSentence").html(response);
+            }
+        });
+    }, 3000);
+</script>
+---------------------
+php:
+$sentences= یک ارایه دو بعدی از جملات تصادفی و نویسنده شان
+$r = rand(0,10);
+echo $sentences[$r][1]. "<br>" . $sentences[$r][0];
+
+===================================================================================================================================
+اضافه کردن اسم استان به پایگاه داده
+
+<script>
+    $(document).ready(function(){
+        var form = $('form#provinceForm');
+        var resultTag = $('div#ajax-result');
+        form.submit(function(event){//لحظه کلیک شدن دکمه
+            resultTag.html('<img src="loader.gif">');//در حال ارسال. gif loader generator
+            event.preventDefault();//جلوگیری از رخداد پیش فرض که همان رفرش شدن صفحه است
+            $.ajax({
+                url : form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(), //داده های درون فرم
+                success: function(response){
+                    resultTag.html(response);
+                }
+            });
+        });
+    });
+</script>
+-----------------------------------
+sleep(1);//کد 1 ثانیه متوقف میشود
+
+function getMessageAndDie($text,$class = 'success'){//ایجاد کلاس برای تغییر رنگ پیام 
+    echo "<span class='$class'>$text</span>";
+    die();
+}
+$province = $_POST['province'];
+
+if(strlen($province) < 3){
+    getMessageAndDie("اسم استان جدید باید حداقل 3 حرف باشه","error");
+}
+$mysqli = new mysqli("localhost","root","","iran");
+if ($mysqli->connect_errno) {
+    getMessageAndDie("Failed to connect to MySQL: " . $mysqli->connect_error,"error");
+}
+$mysqli->set_charset("utf8");
+
+$stmt = $mysqli->prepare("INSERT INTO province (name) VALUES (?)");
+$stmt->bind_param('s',$province);
+$stmt->execute();
+$stmt->close();
+
+getMessageAndDie("استان $province با موفقیت به ایران اضافه شد.","success");
+
+==========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

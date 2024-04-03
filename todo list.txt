@@ -1,0 +1,49 @@
+free todo list html template : رابط کاربری پروژه
+code pen: سایتی برای دانلود انواع قالب ها
+
+ctrl+u = 
+
+assets: فایل های مربوط به رابط کاربری
+tpl- views : mvc /html بخش های مختلف صحفه 
+libs: فایل های پچپ محتوی توابع
+
+config: ... اتصال پایگاه داده و 
+init:  در هنگام شروع پردازش لود بشه مثلا اینکلود ها 
+constants  : ثابت های برنامه 
+bootstrap : خودراه انداز 
+
+php echo : =
+process :  پردازش اطلاعات فرم مثل لاگین و رجیستر
+
+ctrl+G = go to line = :23
+copy outer html in inspect- pase in coery and copy again
+حذف پوشه به صورت ایجکس نیس ولی اضافه کردن پوشه به صورت ایجکس است
+
+ctrl+ B = finding
+ctrl + click = find function
+copy outer html in inspect
+
+onclick //برای کد جاوا اسکریپت
+confirm //پنجره تاییدیه
+
+e.stopPropagation();//جلوگیری از اجرای دوباره
+
+$sql = "Update `tasks` set is_done = 1 - is_done where user_id = :userID and id = :taskID";
+وقتی بخواهیم مقدار صفر را به یک و بلعکس تبدیل کنیم
+
+
+passworrd_hash("passString",PASSWORD_DEFAULT);//تابع پچپ با قابلیت هش با الگوریتم های مختلف
+PASSWORD_BCRYPT 
+
+
+password_verify(pass, pass hash);//تابع برای چک کردن پسورد با هش آن
+
+gravatar :عکس پرفایل را میگیرد 
+
+
+
+
+
+
+
+

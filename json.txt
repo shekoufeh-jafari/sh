@@ -50,3 +50,7 @@ $car->name='pride';
 $configStr= file_get_contents (name.json);//خواندن داده های فایل
 echo $configStr;
 file_put_contents('newName.json',$phpToJson);//ایجاد فایل جدید
+
+
+
+

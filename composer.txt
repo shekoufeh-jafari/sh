@@ -1,0 +1,55 @@
+مدیریت کتابخونه و پکیج ها و وابستگی های انها
+لازم نیس همه کتابخونه ها رو لود کنیم فقط یک تابخونه: include "vendor/autoload.php"
+packageist : منبعی مورد استفادده کامپوزر
+زمانی ک بخوایم مجموعه ای از فایل های پچپ رو به عنوان یک پروژه داخل یک فایل جمع کنیم استفاده میکنیم از : phar file 
+
+getcomposer.org = download
+composer= in powershell
+which composer = in git bash shows installation address
+
+برای شروع :in trminal of project:composer init
+
+composer install => با استفاده از گیت بش و فایل جیسون از قبل ساخته شده
+composer update 
+ 
+include "autoload.php";// همه فایل ها را اضافه میکند
+
+composer dumpautoload  => توی گیت بش اگ ب ارور بر خورد برای اپدیت
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

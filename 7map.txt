@@ -1,0 +1,93 @@
+leafletjs.com   کتابخونه جاوااسکریپت برای نقشه
+
+ctrl+d =Repeat line
+
+setTimeout =  تابع را بعد از بازه زمانی اجرا میکند در جاوااسکریپت
+
+
+سایت شکن : changes dns
+
+tabnine an extention for vscode base on coplete code with AI
+
+composer require hekmatynasser/verta : persian calender
+
+in_array($params['verified'],['0','1']);//مقدار درون ارایه باشد
+جلوگیری از sql injection
+
+
+مرتب کردن کد: ctrl+alt+L
+ کامنت: ctrl+/
+shift_ctrl+r = super refresh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -18,7 +18,7 @@ git add "index.php" = ...اضافه کردن تغییرات فایل
 ******git commit -m "message" =staged
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
-git log = نشان دادن فایل های ثبت شده 
+********git log = نشان دادن فایل های ثبت شده 
 q
 
 git branch = دیدن نسخه های موجود 
@@ -51,7 +51,7 @@ hotfixes :برای باگ های فوری
 git show id = نمایش محتویات درون کامیت ها 
 git diff master..loghman = نمایش تفاوت های دو شاخه
 
-git reset --hard id = رفتن به کامیت مشخص شده و حذف فایل های بعد از ان
+********git reset --hard id = رفتن به کامیت مشخص شده و حذف فایل های بعد از ان
 git reset id = بدون حذف فایل های بعد از ان
 git stash = ذخیره موقت بدون کامیت
 git stash list = نمایش 
@@ -69,7 +69,7 @@ ls = نمایش پوشه ها
 cd file name = رفتن به پوشه
 
 وقتی فایل نداریم:
-git clone https://gitlab.com/shekwf/dart-agency-html.git  = پروژه را از گییت لب وارد پوشه کرد
+***********git clone https://gitlab.com/shekwf/dart-agency-html.git  = پروژه را از گییت لب وارد پوشه کرد
 cd dart-agency-html = داخل پوشه با اسم ... رفت
 touch README.md = ساخت فایل
 git add README.md
