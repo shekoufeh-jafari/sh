@@ -1,19 +1,133 @@
-curl :خاصی url کتابخانه ای ک با استفاده از کامند لاین درخواست ارسال میکند به  
+1)curl :خاصی url کتابخانه ای ک با استفاده از کامند لاین درخواست ارسال میکند به  
 
 //regex101 :
 09[0-9]{9} : الگوی شماره های ایرانی
 [a-zA-Z]* :from 0
 [a-zA-Z]+ :from 1
+[a-zA-Z0-9]{5,64}@[a-zA-Z0-9]{5,64}.[a-zA-Z]{2,6}  //برای ایمیل
+
+ctrl+u
+
+=================================================================================================================================================
+1)curl
+
+function httpGet($url){
+    $ch=curl_init();//شروع استفاده
+    curl_setopt($ch,CURLOPT_URL,$url);//set option
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,$url);//return as string
+    //curl_setopt($ch,CURLOPT_HEADER,false);//هدر را نمایش نمیده
+    $output= curl_exec($ch);//execute
+    curl_close($ch);//end
+    return $output;
+}
+//get page source
+//echo httpGet("https://www.digikala.com/");//رشته
+
+//parsing (use regex or dom library) : تجزیه و شناسایی الگو های با قاعده
+$content= "salam man shekoo 113057 va 0901";
+$numberPattern="/[0-9]+/";
+preg_match_all($numberPattern,$content,$number);//استخراج بر اساس پترن
+print_r($number);
+
+=================================================================================================================================================
+
+2)php domdocument a class in php
+3)php simple html dom download
+
+include "simple_html_dom.php";
+$html= file_get_html('https://7learn.com');//یک آبجکت
+
+//find all link
+foreach ($html->find('a') as $e)
+    echo $e->innertext.$e->href.'<br>';
+
+/*
+//find all image
+foreach ($html->find('img') as $e)
+    echo $e->src.'<br>';
+
+//find all image with full tag
+foreach ($html->find('img') as $e)
+    echo $e->outertext.'<br>';
+
+//find all div tags with id=gbar
+foreach ($html->find('div#gbar') as $e)
+    echo $e->innertext.'<br>';
+
+//find all span tags with class=gb1
+foreach ($html->find('sapn.gb1') as $e)
+    echo $e->outertext.'<br>';
+*/
+=================================================================================================================================================
+instagram php scraper : برای سایت هایی که از داینامیک کلاس استفاده میکنند
+//php goutte library in packagist
+
+composer require symfony/browser-kit
+composer require symfony/http-client
+composer require symfony/css-selector
+
+به جای کلاس Goutte\Client از کلاس serSymfony\Component\BrowserKit\HttpBrowser استفاده کنید.
+
+$client = new HttpBrowser();
+
+selenium & puppeteer سایت‌های spa  داده‌های بصورت ajax لود میشود
+
+client//ارسال و دریافت ریکوئست
+crawler//کلیک روی لینک
+
+$crawler->filter('.post h2 a');//get css selector,.class tagnames
+$crawler->filter('.post h2 a')->each(function ( $node){
+    echo $node->text()."<br>";//متن همه لینک هارا نشان میدهد
+});
+
+
+------------------------
+
+<form action="" method="post">
+<input type="text" class="url" name="url">
+<button>import</button>
+</form>
+
+<?php
+
+if($_SERVER['REQUEST_METHOD'] != "POST") {
+    die();
+}
+
+
+include "vendor/autoload.php";
+//use Goutte\Client;
+use Symfony\Component\BrowserKit\HttpBrowser;
 
 
 
+$client = new HttpBrowser();
+
+$productPage = $_POST['url'];
+$crawler = $client->request('GET', $productPage);
+
+$productData = [];
+
+$productData['fa-title'] = $crawler->filter('.c-product__title')->text();
+try{
+    $productData['en-title'] = $crawler->filter('.c-product__title-en')->text();
+}catch(Exception $exception){
+    $productData['en-title'] = null;
+}
+
+$crawler->filter('ul.c-params__list li')->each(function ($node){
+    global $productData;
+    $key = $node->filter('.c-params__list-key')->text();
+    $value = $node->filter('.c-params__list-value')->text();
+    $productData['params'][$key] = $value;
+});
 
 
-
-
-
-
-
+var_dump($productData);
+# insert productData in Database
+# or write into json filter
+$productDataJson = json_encode($productData);
+file_put_contents($productData['fa-title'] . '.json',$productDataJson);
 
 
 

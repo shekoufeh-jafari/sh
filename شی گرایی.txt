@@ -8,6 +8,7 @@ abstract class{
 
 
 interface name1{
+public function x();
 }
 
 class name2 implements name1,...{
@@ -293,15 +294,25 @@ echo $gs::mul(1,4,7);
 
 =================================================================================================================================================
 
+uml diagram for online shopping system : see the examples
+draw uml diagrams : gliffy 
 
++ public
+# protected
+- private
+=================================================================================================================================================
 
+solid:
+single responsibility principle : اصل تک مسئولیتی
+open for extension & close for modification priciple 
+liskov substitution principle : اصل جایگزینی بچه با پدر
+interface segregation principle : انترفیس های کوچک نه چاق
+dependency inversion principle : استفاده از ابسترک ها
 
-
-
-
-
-
-
+=================================================================================================================================================
+return ;//جلوگیری از ادامه اسکریپت
+[$title,$content,$format] = [$_POST['title'],$_POST['content'],$_POST['format']];
+مقدار دهی چند متغیر همزمان
 
 
 
