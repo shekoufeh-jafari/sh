@@ -8,7 +8,7 @@ abstract class{
 
 
 interface name1{
-public function x();
+public function x();//abstract method
 }
 
 class name2 implements name1,...{

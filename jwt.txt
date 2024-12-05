@@ -1,3 +1,5 @@
+authoriazation: کلید هایی برای بررسی سطح دسترسی کاربران
+
 jwt json web tokens
 
 jwt در php :با استفاده از پچپ خام 

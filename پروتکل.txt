@@ -1,0 +1,111 @@
+پروتکل مجموعه قوانینی در شبکه ک تعیین میکند ارتباط بین دو کامپوتر چگونه باشد
+ftp:مجموعه قوانین انتقال فایل در سطح شبکه
+wappalyzer  :اکتنشن کروم برای این ک بفهمیم سرور هر سایت از چ وب سرویس هایی استفاده کرده است
+
+5.
+فایل جیسون به سگمنت شکسته میشه و سگمنت به پکت تبدیل میشه برای انتقال در سطح شبکه
+ و در لایه فیزیکال یک سری 0و 1 ارسال میشه
+
+OSI :
+
+application : send json request : HTTP*, FTP*, IRC, SSH, DNS*
+presentation : SSL*, SSH,IMAP, FTP, MPEG, JPEG , پروتکل های امنیتی
+session: API, Sokets*, winsock
+transportation: TCP & UTP ,OSI پروتکل های انتقال - قلب
+network :IP*, ICMP, IPSec,IGMP
+data link :Ethernet,PPP,switch,bridge
+physical: coax, fiber, wireless, hubs, repeaters
+
+
+TCP IP
+Aplication
+tranport
+network
+network interface
+
+
+6.
+ip: ادرس هر نود در شبکه اینترنت
+my ip
+ip info
+ip api
+windows powershell: ipconfig : get info about local ip
+ 
+
+7.
+http : پروتکل انتقال ابر متن
+قوانیین و استاندارد های انتقال اطلاعات و محتوا تحت وب رو مشخص میکنه
+request & response by ajax
+
+http status codes:
+1xx : اطلاعاتی
+2xx : موفقیت
+3xx : redirection
+4xx : client error
+5xx : server error
+
+https : همه اطلاعات خروجی از کامپیوتر رمز نگاری شده و در سطح شبکه قابل دسترسی نیست و موقعی که به نود مقصد میرسه رمز گشایی میشه
+http : رمز گذاری نداریم و اطلاعات قابل دزدیدن است
+http* : not secure
+
+https : ssl or tls protocol for encrypted
+cache in web browser
+کوکی یه سری اطلاعات هست که سرور در مرورگر کاربر ذخیره میکند
+http use tcp
+
+
+8.
+cross origin resource sharing: CORS
+http verbs ...
+
+type of header : access control allow origin : سرور ها میتوانند درخواست های مشخص را دریافت کنند
+
+ 
+9.
+dns   سیستم توزسع شده که ای پی متناظر با هر دامین را میدهد 
+domain name system
+have cache 
+host-tracker.com for dns lookup & ...
+
+10.
+SSL & TLS :
+حفظ امین اطلاعات در حین انتقال داده ها در شبکه و رمز نگاری نقطه به نقطه اطلاعات
+الگوریتم های نا متقارن:  نوعش مشخص است ولی از کلید استفاده میشه
+الگوریتم کلاسیک نوعش مخفی است
+
+11.
+انتقال فایل های سنگین
+FTP cllient: file explore windows : ftp@ip : وصل شدن ب سرور 
+FTP server
+control chanel
+data chanel: انتقال طلاعات فایل ها upload & download files
+port 20 & 21
+
+
+12.
+وب سوکت: 
+یک کانکشن پایدار بین دو نود در شبکه است
+نرم افزار های تحت وب مثل تلگرام که کلاینت ان مرورگر است
+وب سوکت یک پروتکل ارتباطی است که میتواند یک ارتباط بین مرورگر و وب سرور برقرار نماید:full duplex
+رفت و امد همزمان اطلاعات
+
+
+
+13.
+ajax:
+تغیر قسمتی از صفحه بدون رفرش کل صفحه
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

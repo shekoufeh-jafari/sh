@@ -1,0 +1,175 @@
+2.
+api:
+رابط بین یک نرم افزار و برنامه هایی که از ان تقاضای سرویس دارند
+برای سرویس دهنده است
+application programming inteerface  رابط برنامه نویسی نرم افزار 
+با استفاده از جیسون اطلاعات ردو بدل میشود
+postman send api request
+کاوه نگار وب سرویس ارسال پیامک
+معماری متفاوت برای وب سرویس یا ماژولی که خدمات رائه میدهد
+:rest soap graphql
+پروتکل یک استاندارد یا قانون جدید
+معماری ینی ایجاد یک سبک جدید .اطلاعات به صورت جیسون است
+قابلیت کش شدن اطلاعات با رست
+ACID in soap use in banks aplication
+json formater extention
+data resive by URL
+ابزاری برای تست : rest api client: postman
+
+3.
+postman: نگهداری تاریخچه ریکوئست ها
+free rest api for country state city
+shekoufeh.jafari.work+1@gmail.com : هر چیزی به علاوه بشه بازم ایمیل از خودته
+
+4.
+rest based on http
+
+*endpoint
+
+*HTTP Methods:
+GET : read & recive- /api/cities
+POST : add data- /api/cities
+PUT: update data
+PATCH: partial update
+DELETE: remove
+
+*HTTP Headers
+*Body
+
+/api/cities?id=4
+/api/cities/4
+ 
+http status codes:
+
+6.
+در ابتدای پروژه باید ساختار وب سرویس را مستند کنید
+end point : مشخص کنید
+
+7.
+
+MVC roots
+[
+'/api/v1/cities' => "class@metho",
+'api/v1/province/{%id}/cities' => "class@method"
+]
+
+api: end point
+app: all project
+utilities: ابزار برای پاسخدهی
+
+php header content type json-> header('Content-Type:application/json');)
+psr4 in php autoloader
+
+8.
+search php symfony response class-> copy status code & text 
+CORS Policy in HTTP protocol in 7learn 
+service & response
+services یک کلاس واسط برای این که به طور مستقیم از توابع درون ایران استفاده نکنیم
+
+
+9.
+inspect-> network-> watch headers
+postman- new- request
+postman-> body-> row->send json request
+
+
+get: اطلاعات ارسالی را میتوان با سوپرگلوبال گرفت-> $_GET[]
+post: اطلاعات در بدنه ارسال میشود ->file_get_contents('php://input);  //گرفتن اطلاعات بدنه ریکوئست
+json_decode(file_get_contents('php://input),true);//asoctioative array
+
+10.
+switch...
+GET...
+http://localhost/learn/Iran/api/v1/cities/?province_id=1
+
+نوشتن یک کلاس که با استفاده از اطلاعات دیتابیس عملیات اعتبار سنجی انجام میدهد
+  # do validate : $province_id 
+        // if(!$province_validaor->is_valid_province($province_id))
+        //     Response::respondAndDie(['Error: Invalid Province ..'],Response::HTTP_NOT_FOUND);
+
+
+http verb:methods(get,delete,..)
+
+11.
+POST...
+
+12.
+UPDATE...
+
+13.
+DELETE... like get & query parameters
+
+14.
+versioning - endppoint vertion
+breaking changes
+
+15.
+pagination 
+?page=2&pagesize=20 ->20-40
+for get method
+LIMIT $start , $pagesize
+$start=pagesize* (page-1)
+
+16.
+fields: برای فیلتر کردن 
+مثلا فقط اسم شعر ها برگردد
+for validate fields use implode and explode
+
+17.
+orderby=name asc/desc
+
+18.
+cache response
+پاسخ گویی سریعتر- کاهش منبع مصرفی سرور- تعداد درخواست همزمان بیشتر- 
+به دلیل این که ممکن است مرورگر کلاینت کش را ساپورت نکند توصیه میشود که کش سمت سرور رخ بدهد
+rest api caching
+
+CacheUtility ->static cache 
+بهینه سازی صفحات وب و وبسایت های مبتنی بر پچپ
+
+$cache_file ادرس جایی که فایل ریکوئست ذخیره میشه
+
+ob_start();//output buffring     وقتی میخوای کش کنیم
+چیززی مه میخوای به کلاینت نمایش بدی رو به جاش بافر کن در حافظه موقت
+
+ob_end_flush();// وقتی کش تمام میشه و چیزای بافرو میریزه بیرون
+
+ob_get_clean(); when we use echo bettween ob_start() and ob_end_flush()
+every things are in string format.
+request_uri is unike
+
+fopen make a file
+fwrite
+fclose
+
+filetime()
+
+glob(dir . "*");//در قالب ارایه همه فایل هارا انتخاب میکند
+
+unlink($file);//حذف کردن فایل
+
+composer -> .enve for config
+
+
+19.
+grnerate jwt token
+get-api-key.php
+
+20.
+validation token
+php get authorization header bearer -> search
+
+
+http://localhost/learn/Iran/api/v1/cities/?province_id=1&page=1&pagesize=2&fields=id
+
+
+
+
+
+
+
+
+
+
+
+

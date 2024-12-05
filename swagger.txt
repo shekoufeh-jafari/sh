@@ -1,0 +1,75 @@
+https://github.com/Arianrafiei/robeehost_backend/invitations
+https://youtu.be/Hakpf-aVTjA?si=1kUWd1w9NJMhOzbv
+https://anophel.com/fa/articles/create-rest-api-laravel 
+https://anophel.com/fa/articles/what-is-swagger-with-using-in-laravel
+php artisan make controller
+
+
+https://anophel.com/fa/articles/what-is-swagger-with-using-in-laravel
+
+after creat laravel project : run :
+php artisan install:api
+config-database.php -> 52. collation dedault'utf8mb4_general_ci'
+composer require --dev darkaonline/l5-swagger
+php artisan l5-swagger:generate -> error
+to fix error -> app/http/controller/Api/HomeController.php:
+class HomeController extends Controller
+{
+      /**
+     * @OA\PathItem(path="/api")
+     *
+     * @OA\Info(
+     *      version="0.0.0",
+     *      title="Anophel API Documentation"
+     *  )
+     */
+    public function index()
+    {
+        return "index /home";
+    }
+}
+
+->ruotes/api.php:
+ Route::get("/" , [\App\Http\Controllers\Api\HomeController::class , 'index']);
+ in chrom:
+http://localhost:8000/api/documentation 
+
+
+
+config/swagger.php ->   'generate_always' => env('L5_SWAGGER_GENERATE_ALWAYS', true),
+
+
+app/models/User.php
+use Laravel\Sanctum\HasApiTokens;
+use HasFactory, Notifiable, HasApiTokens;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+php error level in php
+error_reporting(E_ALL);//برای استفاده از
+XAMPP-apache-config-php= serch:error_reporting
+delete ;semicalon and put error_reporting=E_ALL;
+
+
+log analysts : ثبت خطاها
+
+$allVariables = get_defined_vars();//show all variables
+debug_zval_dump($allVariables);//count variables referenced
+debug_print_backtrace();//مسیر قبل تا رسیدن به این نقطه را تحلیل میکند
+
+ctrl+shift+p
+
+file-settings-plugins in phpstorm
+
+
+4.
+php debug extention installed in vs code
+phpinfo(); copy for xdebug wizard
+install xdebug
+in vs code creat luanch.json
+
+5.
+$e= new exception();
+print_r($e);//an object
+
+php exception search
+
+6.
+Throwable :یک اینترفیس است که ارور ها و اکزپشن ها ان را ایمپلیمنت کرده اند
+اجرای برنامه متوقف نمیشه و خطا در خروجی چاپ نمیشه
+
+ try{
+
+//هر کدی ک ممکنه خطا ایجاد کنه
+throw new Exception("custom exception");//generate an exception
+در صورت وجود خطا ادامه کد در این بخش اجرا نمیشود
+throw new DivisionByZeroError("Taghsaim bar 0 manooooooeee!");
+
+}catch(Exception $e){//Throwable را میتوان به جای اگزپشن قرار داد
+
+//اطلاعات خطا
+$msg= $e->getMessage();
+file_put_contents("error_logs.txt",$msg,FILE_APPEND);//error log
+
+}catch(){//like else
+
+}finally{
+در هر صورت اجرا میشود
+}
+
+
+7.
+class DBException extends PDOException{};
+try {
+	try {
+		new PDO("","","");
+	}catch(PDOException $e){
+		thrwo new DBException("database failed");
+	}
+}catch(DBException $e){
+ echo "DB error";
+}
+
+
+8.
+function meException($exception){
+echo $exception_>getMessage();
+}
+set_exception_handler("meException");//ادامه اسکریپت متوقف میشود و هر خطایی که ایجاد شود به درون تابع فرستاده میشود
+thrwo new Exception("uncaught exception occured");
+
+
+**********error traking****************
+sentry standalone           برای گرداوری و لاگ کردن خطاها
+یا عضو شوید یا کل ان را دان کنسد
+composer require sentry/sdk:... نصب پکیج
+functions.php in wordpress for including
+Sentry\init(['dsn' => 'https://']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,252 @@
+225.
+نصب لاراول به دو صورن گلوبال و پوشه ای امکان پذیر است
+من جفتشو انجام دادم
+
+laravel.com
+packagist
+command propmt->composer create-project laravel/laravel example-app
+cd example-app
+php artisan serve -> http://127.0.0.1:8000
+
+
+226.
+command prompt >composer global require laravel/installer
+
+
+vscode extention:
+
+vscode-icon
+bootstrap 5 quick snippets
+tailwind css intelisense
+live server
+laravel blade formatter
+laravel goto view
+bracket pair color dlw
+dotenv
+editorconfig for vs code
+electron color
+emmet live
+laravel artisan
+laravel blade snippets
+laravel blade wrapper
+laravel creat view
+laravel extention pack
+laravel extra intelisense
+laravel snippets
+laravel goto component
+laravel jump controller
+material icon theme
+php debug
+php extention pack
+php intelisense
+prettier code formatter
+vscode icons
+
+
+227.
+php artisan serve
+
+blade templates
+routes-> web.php تنظیم برای نمایش صفحه- uri -> /hi
+resources -> views -> welcom.blade.php اضافه کردن صفه
+
+<?php
+echo $name;
+?>
+<br>
+arrrrr {{ $name }}
+<br>
+{!! $name !!}  -> برای شناسایی تگ
+
+web.php
+Route::get('/hi', function () {
+    return view('hi', ['name' => '<h1>sheko</h1>']);
+});
+
+
+
+228.
+storage > framework > views   کد های  php
+unless -> if!  -> شرط اشتباه را چک میکنه
+
+@if ($records ===1)
+i have one record
+@elseif ($records >6)
+i have multiple records
+@else
+i dont have any records
+@endif
+<br>
+@unless ($records >6)
+i have one record
+@endunless
+
+
+Route::get('/hi', function () {
+    return view('hi', ['records' => 1]);
+});
+
+
+
+229.
+
+@switch($i)
+    @case(1)
+first records
+        @break
+ @case(2)
+second records
+        @break
+
+    @default
+default ...
+@endswitch
+<br>
+
+
+@for ($i=0; $i<10; $i++)
+value is {{ $i }} <br>
+@endfor
+
+
+@foreach ($users as $user)
+this user is {{ $user}} <br>
+@endforeach
+
+
+
+
+Route::get('/hi', function () {
+    return view('hi', ['users' => [1,2,3]]);
+});
+
+@forelse ( $users as $user )
+this {{ $user }}<br>
+@empty
+no user
+@endforelse
+
+
+230.
+
+@php
+    $i=1
+@endphp
+
+@while ($i<10)
+<p>im loop{{$i}}</p><br>
+@php
+   $i++
+@endphp
+@endwhile
+
+
+231.
+master.blade.php
+ارث بری از کدهای تکراری
+
+@extends('layouts.master')            layout/master.blade.php
+@section('content')                    @yield('content')
+<div>
+    <h1>about page</h1>
+</div>
+@endsection
+@section('title')
+about
+@endsection
+
+
+232.
+قرار دادن فایل css
+public ->css-> style.css داخل این پوشه
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+
+233.
+bootstap files work as cdn 
+copy css,js & asset files to public folder in laravel project
+copy index.html codes to master.bade.php
+change welcom page to index.blade.php
+in index.blade.php file :@extend('layout.master')
+in master.blade.php : @include('layout.footer')   : وقتی که قسمت های مختلف صفه جداست
+
+234.
+if in index.blade.php we dont have @section('test') index @endsection
+in master.blade.php insted of @yild('test') we use @section('test') index2 @show
+show index2
+
+235.
+views -> components(folder) -> botton.blade.php(file)
+
+@component("components.botton",['title'=>'send', 'class'=>"btn"])
+
+@endcomponent
+
+
+@component("components.botton",['class'=>'btn'])
+@slot('title')
+submit
+@endslot
+@endcomponent
+
+
+<button class="{{$class}}">
+{{$title}}
+</button>
+
+236.
+in cmd myproject -> php artisan make:component btn -> creat ->
+views -> components -> btn.blade.php
+app -> view/components -> btn.php
+
+in btn.blade.php :
+<div>
+    <button style="background-color: #008CBA;" >ارسال</button>
+</div>
+
+in about.blade.php : <x-btn/>
+------------------------------------
+in btn.php:
+    public $title;
+    public function __construct($data)
+    {
+        $this->title = $data;
+    }
+
+in about.blade.php :
+<x-btn data="send" />
+<x-btn data="post" />
+
+in btn.blade.php :
+<div>
+    <button style="background-color: #008CBA;" >{{$title}}</button>
+</div>
+
+
+
+237.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

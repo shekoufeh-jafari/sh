@@ -1,0 +1,220 @@
+ارتباط ابجکت ها . وظیفه کلاس ها و متد ها . فقط یه کار انجام بده.
+api  واضح
+قابل تست باشد . تست ها را بتوان تغییر داد
+سالید
+باگ فیکس
+کد تکرای نباشه
+متد ها فعل و کلاس ها اسن باشند
+متد ها بیشتر 7 خط نشه و بیشتر از 3 ورودی نگیره
+فانکشن کامند و کوئری
+ کامنت ننویس
+psr12
+
+2.نام گذاری
+
+currentDate  
+allowdFileExtention
+recentVideos
+usersPayload : get from api
+isActive for bolian
+
+function additional(int $num1,int $num2)
+ 
+//null coalecing operator
+$name=$_GET['name]??$_POST['name']?? 'value';
+
+
+3.
+به یک کلاس میتوان یک شی از کلاس دیگر پاس داد
+باید تعداد متغیر های ورودی را کاهش داد
+وقتی نمیشه تعداد را کم کرد در قالب ارایه دریافت کنید
+
+class questionnaire
+{
+	public function__construct(User @user,$city)
+	{
+	}
+	public function register(array $information)
+	{
+	}
+}
+
+class User
+{
+	public $firstname;
+	public $age;
+	private $status;
+	public function isactive()
+	{
+		return $this->status=='active';
+	}
+}
+
+
+
+تا جای ممکن از فلگ استفاده نکنید
+$flag=true
+وضعیت متغیر ها درون کلاس با تابع مشخص شود و در خارج از کلاس از تابع استفاده شود نه متغیر
+if($User->status=='active')
+if($User->isactive())
+
+
+4.
+متغیر های کلاس را پرایوت تعریف کنید و با گتر و ستر به انها دسترسی داشته باشید
+
+
+5.
+از شرط های تو در تو استفاده نکنید
+انها را برعکس و نقیص کنید
+else: ازش استفاده نکنید
+
+6. solid
+ 
+7.
+single responsibility principle
+
+8.
+array_values($_POST);
+array_values($params);
+
+9.
+open-clised principle
+برای توسعه باز و برای تغییر بسته
+
+$class= ucfirst($type); اول کلمه را بزرگ میکند
+(new $class())->send($params);
+
+10.
+liskov substitution principle
+نحوه طراحی اینترفیس
+کلاس ها قابل جابه جایی باشند و همه توابع تعریف شده باشند
+
+11.
+نوع ورودی و خروجی را مشخص کنید
+interface Database
+{
+	public function getall(string $params): array;
+}
+
+
+12.
+interface segregation principle
+انترفیس ها کوچک باشد
+
+
+13.
+dependency in version
+وابسته نبودن زیر کلاس به کلاس
+درون یک کلاس از کلاس دیگ شی نساز
+
+IOC container = inversion of control contaner = in laravel framework
+همه شی ها درونش ساخته میشود و در دیگر جاها حق نیو کردن نداریم
+
+
+<?php
+
+interface Basket
+{
+    public function add();
+    public function remove();
+    public function totalAmount();
+    public function all();
+
+}
+
+
+class DatabaseBasket implements Basket
+{
+    public function add()
+    {
+
+    }
+
+    public function remove()
+    {
+
+    }
+
+    public function totalAmount()
+    {
+        return 'Total amount from Database basket' . PHP_EOL;
+    }
+
+    public function all()
+    {
+
+    }
+
+}
+class SessionBasket implements Basket
+{
+    public function add()
+    {
+
+    }
+
+    public function remove()
+    {
+
+    }
+
+    public function totalAmount()
+    {
+        return 'Total amount from session basket' . PHP_EOL;
+    }
+
+    public function all()
+    {
+
+    }
+}
+
+class Order
+{
+
+    private $basket;
+    public function __construct(Basket $basket)
+    {
+        $this->basket = $basket;
+
+    }
+
+    public function make()
+    {
+        echo $this->basket->totalAmount();
+    }
+}
+
+class Payment
+{
+    private $basket;
+    public function __construct(Basket $basket)
+    {
+        $this->basket = $basket;
+
+    }
+    public function pay()
+    {
+        echo $this->basket->totalAmount();
+    }
+
+}
+
+
+
+
+$basket = new SessionBasket();
+
+(new Payment($basket))->pay();
+(new Order($basket))->make();
+
+
+
+
+
+
+
+
+
+
+

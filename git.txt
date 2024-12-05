@@ -1,10 +1,12 @@
- git cheatsheet
+
+
+git cheatsheet
 php cheatsheet
 vpn
 gitlab self hosted = نصب گیت روی سرور شخصی
 ctrl+o= save
 ctrl+x= exit
-git init = ایجاد پوشه .git
+******************git init = ایجاد پوشه .git
 *git status = دیدن وضعیت فایل ها
 
 git file lifecycle
